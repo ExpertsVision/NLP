@@ -7,13 +7,13 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.metrics import accuracy_score
 from sklearn import svm
 # read data file
-df = pd.read_csv('leadership_train_data (2).csv', encoding='latin-1')
+df = pd.read_csv('leadership_train_data.csv', encoding='latin-1')
 
 considered_params= ['combined_caption_title', 'label']
 new_df = df[considered_params].copy()
 
 dataset = new_df.values
-X = dataset[:,0:1] # starts AT column 0 and ends BEFORE column 6
+X = dataset[:,0:1] # starts AT column 0 and ends BEFORE column 1
 Y = dataset[:,1] # column 6 ONLY
 
 X= df["combined_caption_title"].tolist()

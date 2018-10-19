@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.metrics import accuracy_score
 
 # read data file
-df = pd.read_csv('leadership_train_data (2).csv', encoding='latin-1')
+df = pd.read_csv('leadership_train_data.csv', encoding='latin-1')
 
 considered_params= ['combined_caption_title', 'label']
 new_df = df[considered_params].copy()
