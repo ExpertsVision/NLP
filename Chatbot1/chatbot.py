@@ -91,4 +91,50 @@ ldamodel = Lda(doc_term_matrix, num_topics=3, id2word = dictionary, passes=50)
 
 # Results 
 print(ldamodel.print_topics())
+#==============================================================================
+#%%
+"""
+A combination of N words together are called N-Grams. N grams (N > 1) are generally more informative as
+ compared to words (Unigrams) as features. Also, bigrams (N = 2) are considered as the most important 
+ features of all the others. The following code generates bigram of a text.
+"""
+def generate_ngrams(text, n):
+    words = text.split()
+    output = []  
+    for i in range(len(words)-n+1):
+        output.append(words[i:i+n])
+    return output
 
+#==============================================================================
+#%%
+"""
+Text data can also be quantified directly into numbers using several techniques described in this 
+section:
+A.  Term Frequency – Inverse Document Frequency (TF – IDF)
+"""   
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+obj = TfidfVectorizer()
+corpus = ['This is sample document.', 'another random document.', 'third sample document text']
+X = obj.fit_transform(corpus) 
+
+#=============================================================================
+#%%
+"""
+Word2Vec and GloVe are the two popular models to create word embedding of a text. These models takes a 
+text corpus as input and produces the word vectors as output.
+
+Word2Vec model is composed of preprocessing module, a shallow neural network model called Continuous 
+Bag of Words and another shallow neural network model called skip-gram. These models are widely used 
+for all other nlp problems. It first constructs a vocabulary from the training corpus and then learns
+word embedding representations. Following code using gensim package prepares the word embedding as 
+the vectors.
+"""    
+from gensim.models import Word2Vec
+sentences = [['data', 'science'], ['sajid', 'science', 'data', 'analytics'],['machine', 'learning'], ['deep', 'learning']]
+
+# train the model on your corpus  
+model = Word2Vec(sentences, min_count = 1)
+
+print (model.similarity('data', 'science'))
+print (model['learning'])
